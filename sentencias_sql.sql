@@ -1,3 +1,7 @@
+create database construccion;
+use database construccion;
+
+
 create table clases_planta (id int primary key, nombre_planta varchar(200), descripcion varchar(1000));
 INSERT INTO CLASES_PLANTA values (1,'TOMATE','tomatus_comusus');
 INSERT INTO CLASES_PLANTA values (2,'PIMIENTO','pimientus comusus');
