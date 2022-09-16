@@ -7,7 +7,7 @@ require_once('../back/claseBase.php');
       </head>
 
       <body>
-	  <h1>Creacion de nueva planta </h1>
+	  <h1>Creacion de historial de riego </h1>
 	  <form action="creacionNuevaPlanta.php" method="post">
 		<input type="date" name="fechaPlantacion"/>
 		<input type="numeric" name="porcentajeHumedad"/>
@@ -17,7 +17,7 @@ require_once('../back/claseBase.php');
 		<?php
 			$claseBase = new ClaseBase();
 			$listadoClasePlantas = $claseBase->getClasePlanta();
-			//var_dump($listadoClasePlantas);
+			var_dump($listadoClasePlantas);
 			foreach ($listadoClasePlantas as $clasePlanta) 
 			{
 				$id =  $clasePlanta->getId();

@@ -4,7 +4,7 @@ class historialRiego
       private $idHistorialRiego;
       private $fechaRiego;
       private $porcentajeHumedad;
-	  private $idPlanta
+	private $idPlanta
       
       function __construct($idPlanta, $fechaRiego, $porcentajeHumedad)
       {

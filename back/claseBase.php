@@ -113,11 +113,11 @@ class claseBase
 	
 	
 	/**
-	Funcion que retorna todas las plantas de base
+	Funcion que retorna todas los historiales de riego
 	*/
-	function getPlantas()
+	function getPlantas() //Es el historial de riego
 	{
-		$sql = "SELECT id, porcentaje_humedad, fecha_plantacion, id_clase_planta from planta";
+		$sql = "SELECT a.id, a.porcentaje_humedad, a.fecha_plantacion, a.id_clase_planta, b.nombre_planta from planta a inner join clases_planta b ON a.id_clase_planta=b.id ORDER BY a.id DESC ";
 		$result = $this->conn->query($sql);
 
 		$plantas = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -128,6 +128,7 @@ class claseBase
 			{
 				$planta = new planta($plantaResult['fecha_plantacion'],$plantaResult['porcentaje_humedad'],$plantaResult['id_clase_planta']);
 				$planta->setId($plantaResult['id']);
+				$planta->setNombrePlanta($plantaResult['nombre_planta']);
 				array_push($listaPlantas, $planta);
 			}
 		}
@@ -138,7 +139,7 @@ class claseBase
 	/**
 	Funcion que extrae la data de 1 planta y retorna un objeto del tipo *planta*
 	*/
-	function getPlantaById($id)
+	function getPlantaById($id)//Riego==Planta
 	{
 		$sql = "SELECT id, porcentaje_humedad, fecha_plantacion, id_clase_planta from planta where id=:id";
 		$statement = $this->conn->prepare($sql);
@@ -155,6 +156,27 @@ class claseBase
 				return $planta;
 			}
 		}
+	}
+
+	function getHistorialRiegoByIdPlanta($id)//Riegos==Planta
+	{
+		$sql = "SELECT id, porcentaje_humedad, fecha_plantacion, id_clase_planta from planta where id_clase_planta=:id";
+		$statement = $this->conn->prepare($sql);
+		$statement->bindParam(":id", $id);
+		$statement->execute();
+
+		$listaPlantas = array();
+		$plantaRs = $statement->fetchAll(PDO::FETCH_ASSOC);
+		if ($plantaRs) {
+			foreach ($plantaRs as $plantaResult) 
+			{
+				//planta=historia de riego
+				$planta = new planta($plantaResult['fecha_plantacion'],$plantaResult['porcentaje_humedad'],$plantaResult['id_clase_planta']);
+				$planta->setId($plantaResult['id']);
+				array_push($listaPlantas, $planta);
+			}
+		}
+		return $listaPlantas;
 	}
 	
 	/**
@@ -187,5 +209,8 @@ class claseBase
 	}
 	
 }
+
+
+
 
 ?>

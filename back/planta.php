@@ -14,6 +14,11 @@ class planta
       private $porcentajeHumedad;
 	  //Tipo de planta
 	  private $clasePlanta;
+	  //nombre de planta
+	  private $nombrePlata;
+
+
+
 	  function __construct($fechaPlantacion, $porcentajeHumedad, $clasePlanta)
       {
 			if($porcentajeHumedad>=100)
@@ -27,6 +32,16 @@ class planta
       }
 	//Si se necesita guardar mas datos, se agrega en el select y en la clase con setId  
 	  
+	function setNombrePlanta($nombrePlata)
+	{
+		$this->nombrePlata = $nombrePlata;
+	}
+
+	function getNombrePlanta()
+	{
+		return $this->nombrePlata;
+	}
+
 	  /**
 	  Metodo set del Id
 	  */
