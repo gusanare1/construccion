@@ -16,11 +16,11 @@ body {
 
 </head>
 	<body>
-		<h1> Listado de plantas </h1>
+		<h1> Historial de Riego </h1>
 		
 		<?php
 			require_once('../back/claseBase.php');
-			echo "<div><a href='index.php'> Nueva Planta </a></div>";
+			echo "<div><a href='index.php'> Nuevo historial de riego </a></div>";
 			$claseBase = new claseBase();
 			$listadoPlantas = $claseBase->getPlantas();
 			foreach ($listadoPlantas as $planta) 
@@ -29,7 +29,8 @@ body {
 				?>
 				<div class = "">
 					<?php
-						echo "<span><b>Fe.Plantacion:</b></span> <span>".$planta->getFechaPlantacion()."</span> <span ><b>Humedad:</b> ".$planta->getPorcentajeHumedad()."</span> <span class='css_absoluto'><a class='btn btn-primary' href=editar.php?id=$id>Editar</a>   <a class='btn btn-primary' href=borrarPlanta.php?id=$id>Borrar</a></span> ";
+					
+						echo "<span><b>Fe.Riego:</b></span> <span>".$planta->getFechaPlantacion()."</span>    <span><b>Planta:</b></span> <span>".$planta->getNombrePlanta()."</span>          <span ><b>Humedad:</b> ".$planta->getPorcentajeHumedad()."</span> <span class='css_absoluto'><a class='btn btn-primary' href=editar.php?id=$id>Editar</a>   <a class='btn btn-primary' href=borrarPlanta.php?id=$id>Borrar</a></span> ";
 					?>
 				</div>
 				<?php

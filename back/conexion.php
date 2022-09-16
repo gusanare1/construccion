@@ -5,7 +5,7 @@ class conexion
 	private $servername = "localhost";
 	private $username = "usuario";
 	private $password = "password";
-	private $dbName = "symfony";
+	private $dbName = "construccion";
 	private $conn = null;
 	function openConnection()
 	{
